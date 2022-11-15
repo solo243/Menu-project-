@@ -50,14 +50,14 @@ public:
 	//cold price and item 
 	string colds[20] = { cold1,cold2,cold3 };
 	int   c_price[20] = { c1,c2,c3 };
-	
 
-	string main_choice, b_choice, c_choice, change_pizza_name,
+
+	string main_choice, change_pizza_name,
 		change_burgir_name, itemname, gg;
 	int userprice, addpricecin, additem, changeoption, itempick;
-	int s_choice, hh ,price[20];
-	int GST=6;
-	string gst_option, p_choice;
+	int s_choice, hh, price[20];
+	int GST = 6, qt, p_choice, b_choice, pprice, c_choice;
+	string gst_option, billp;
 
 	void welcome();
 	void pizza();
@@ -78,7 +78,7 @@ public:
 	void add_item_pizza();
 	void add_item_burgir();
 	void size_and_price();
-
+	void bill();
 
 	//pizza template function
 	void pizzatemp()
@@ -221,26 +221,62 @@ void menu::pizza()
 {
 start:
 
-		
-			system("cls");
-			pizzatemp();
-			cout << "What you want to order " << endl;
-			cout << "-->> ";
-			cin >> p_choice;
-		
-	
-	if (p_choice == "4")
+
+	system("cls");
+	pizzatemp();
+	cout << "What you want to order " << endl;
+	cout << "-->> ";
+	cin >> p_choice;
+
+
+
+
+	if (p_choice == 4)
 	{
-		add_gst();
+
 		system("cls");
 		return welcome();
 	}
-	else if (p_choice == "1")
+
+
+	switch (p_choice)
 	{
-		
-		cout << "\n price and gst "<< p_price[0] + GST;
+	case 1:
+
+		billp = pizzas[0];
+		pprice = p_price[0];
+		cout << "\nhow many pizza do oyu want pls enter -->>";
+		cin >> qt;
+		cout << "\n\n";
+		bill();
+
+
+		break;
+	case 2:
+
+		billp = pizzas[1];
+		pprice = p_price[1];
+		cout << "\nhow many pizza do oyu want pls enter -->>";
+		cin >> qt;
+		cout << "\n\n";
+		bill();
+
+		break;
+	case 3:
+
+		billp = pizzas[2];
+		pprice = p_price[2];
+		cout << "\nhow many pizza do oyu want pls enter -->>";
+		cin >> qt;
+		cout << "\n\n";
+		bill();
+
+		break;
+	default:
+		cout << " you did somthing wrong pls try angin " << endl;
+		goto start;
+		break;
 	}
-	
 }
 
 
@@ -254,17 +290,46 @@ start:
 	cout << "What you want to order " << endl;
 	cout << "-->> ";
 	cin >> b_choice;
-	if (b_choice == "4")
+	if (b_choice == 4)
 	{
 		system("cls");
 		return welcome();
 	}
-	
-	else
+
+	switch (b_choice)
 	{
-		system("cls");
-		cout << "\n wrong option \n ";
-		goto start;
+	case 1:
+
+		billp = burgirs[0];
+		pprice = b_price[0];
+		cout << "\nhow many burgirs do oyu want pls enter -->>";
+		cin >> qt;
+		cout << "\n\n";
+		bill();
+
+
+		break;
+	case 2:
+
+		billp = burgirs[1];
+		pprice = b_price[1];
+		cout << "\nhow many burgirs do oyu want pls enter -->>";
+		cin >> qt;
+		cout << "\n\n";
+		bill();
+
+		break;
+	case 3:
+
+		billp = burgirs[2];
+		pprice = b_price[2];
+		cout << "\nhow many burgirs do oyu want pls enter -->>";
+		cin >> qt;
+		cout << "\n\n";
+		bill();
+
+		break;
+
 	}
 }
 
@@ -281,17 +346,46 @@ start:
 	cout << "-->> ";
 	cin >> c_choice;
 
-	if (c_choice == "4")
+	if (c_choice == 4)
 	{
 		system("cls");
 		return welcome();
 	}
-	
-	else
+
+	switch (c_choice)
 	{
-		system("cls");
-		cout << "\n wrong option \n ";
-		goto start;
+	case 1:
+
+		billp = colds[0];
+		pprice = c_price[0];
+		cout << "\nhow many burgirs do oyu want pls enter -->>";
+		cin >> qt;
+		cout << "\n\n";
+		bill();
+
+
+		break;
+	case 2:
+
+		billp = colds[1];
+		pprice = c_price[1];
+		cout << "\nhow many burgirs do oyu want pls enter -->>";
+		cin >> qt;
+		cout << "\n\n";
+		bill();
+
+		break;
+	case 3:
+
+		billp = colds[2];
+		pprice = c_price[2];
+		cout << "\nhow many burgirs do oyu want pls enter -->>";
+		cin >> qt;
+		cout << "\n\n";
+		bill();
+
+		break;
+
 	}
 }
 
@@ -323,7 +417,7 @@ start:
 		system("cls");
 		return item_add_fun();
 		break;
-	case 3: 
+	case 3:
 		system("cls");
 		return add_gst();
 	case 4:
@@ -832,15 +926,15 @@ start:
 
 void menu::add_gst()
 {
-	start:
+start:
 	cout << "\n***************************************************************************" << endl;
 	cout << "*                        Welcome to change GST section!                    *" << endl;
 	cout << "***************************************************************************" << endl;
 	cout << "\n";
-	cout << "  Gst Options \n"<<endl;
-	cout << " (1) Change GST "<<endl;
-	cout << " (2) Back "<<endl;
-	cout << " (3) Main Menu \n"<<endl;
+	cout << "  Gst Options \n" << endl;
+	cout << " (1) Change GST " << endl;
+	cout << " (2) Back " << endl;
+	cout << " (3) Main Menu \n" << endl;
 	cout << "***************************************************************************" << endl;
 	cout << "\n  What opton do you want to choose  \n";
 	cout << "  -->> ";
@@ -868,7 +962,17 @@ void menu::add_gst()
 		cout << "\n unknown command pls try angin !!\n";
 		goto start;
 	}
-	
+
 }
 
 
+void menu::bill()
+{
+	cout << "\n *****************************************************************************" << endl;
+	cout << " *                               your bill is                                *" << endl;
+	cout << " *****************************************************************************" << endl;
+	cout << " QT\t\t\tItem\t\t\tGST\t\t\tPrice\t\t\t\n" << endl;
+	cout << " " << qt << "\t\t\t" << billp << "\t\t " << GST << "%\t\t\t$ " << pprice * qt + GST;
+
+	cout << "\n ****************************************************************************" << endl;
+}
